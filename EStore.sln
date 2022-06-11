@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCartService", "Shop
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{919966D2-A3E5-490D-B0EA-75F18E22F745}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCartServiceTest", "..\ShoppingCartServiceTest\ShoppingCartServiceTest.csproj", "{4A93B54F-543E-4E7A-85D3-247FD9B4F06B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCartServiceTest", "ShoppingCartServiceTest\ShoppingCartServiceTest.csproj", "{4A93B54F-543E-4E7A-85D3-247FD9B4F06B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
