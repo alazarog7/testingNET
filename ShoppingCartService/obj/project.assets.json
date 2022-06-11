@@ -5196,11 +5196,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\TestProject\\P1_start_solution\\ShoppingCartService\\ShoppingCartService.csproj",
+      "projectUniqueName": "E:\\TestProject\\testingNET\\ShoppingCartService\\ShoppingCartService.csproj",
       "projectName": "ShoppingCartService",
-      "projectPath": "E:\\TestProject\\P1_start_solution\\ShoppingCartService\\ShoppingCartService.csproj",
+      "projectPath": "E:\\TestProject\\testingNET\\ShoppingCartService\\ShoppingCartService.csproj",
       "packagesPath": "C:\\Users\\alejandro.lazaro\\.nuget\\packages\\",
-      "outputPath": "E:\\TestProject\\P1_start_solution\\ShoppingCartService\\obj\\",
+      "outputPath": "E:\\TestProject\\testingNET\\ShoppingCartService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alejandro.lazaro\\AppData\\Roaming\\NuGet\\NuGet.Config",
