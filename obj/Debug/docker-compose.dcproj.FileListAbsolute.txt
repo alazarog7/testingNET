@@ -1,1 +1,0 @@
-D:\PROYECTOS_PERSONALES\backend_practica\netcore\P1_start_solution\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
