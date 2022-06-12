@@ -75,5 +75,67 @@ namespace ShoppingCartServiceTest
 
             Assert.Equal(0, total);
         }
+
+        [Theory]
+        [MemberData("GetObjects")]
+        public void CanCalculateShippingCost(Cart cart, double totalCost)
+        {
+            var total = _shippingCalculator.CalculateShippingCost(cart);
+
+            Assert.Equal(totalCost, total);
+        }
+
+        public static IEnumerable<object[]> GetObjects
+        {
+            get
+            {
+                return new[]
+                {
+                    new object[] { new Cart()
+                        {
+                            Id = "1",
+                            CustomerId = "1",
+                            CustomerType = CustomerType.Premium,
+                            ShippingMethod = ShippingMethod.Standard,
+                            ShippingAddress = new Address()
+                            {
+                                Street = "Las lomas",
+                                City = "La Paz",
+                                Country = "Bolivia"
+                            },
+                            Items = new List<Item>()
+                            {
+                                new Item()
+                                {
+                                    ProductId = "1",
+                                    ProductName = "Product 1",
+                                    Price = 100,
+                                    Quantity = 1
+                                }
+                            }
+                        },
+                        15
+                    },
+                    new object[] {  new Cart()
+                            {
+                                Id = "1",
+                                CustomerId = "1",
+                                CustomerType = CustomerType.Premium,
+                                ShippingMethod = ShippingMethod.Standard,
+                                ShippingAddress = new Address()
+                                {
+                                    Street = "Las lomas",
+                                    City = "La Paz",
+                                    Country = "Bolivia"
+                                },
+                                Items = new List<Item>()
+                                {
+                                }
+                            },
+                            0
+                    }
+                };
+            }
+        }
     }
 }
