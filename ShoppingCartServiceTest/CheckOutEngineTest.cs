@@ -22,6 +22,8 @@ namespace ShoppingCartServiceTest
         {
             var mappingConfig = new MapperConfiguration(mc =>
             {
+                mc.AllowNullCollections = true;
+                mc.ShouldMapMethod = (m => false);
                 mc.AddProfile(new MappingProfile());
             });
             
@@ -43,9 +45,9 @@ namespace ShoppingCartServiceTest
                 ShippingMethod = ShippingMethod.Standard,
                 ShippingAddress = new Address()
                 {
-                    Street = "Las lomas",
-                    City = "La Paz",
-                    Country = "Bolivia"
+                    Country = "USA",
+                    City = "Dallas",
+                    Street = "1234 left lane."
                 },
                 Items = new List<Item>()
                 {
@@ -59,11 +61,14 @@ namespace ShoppingCartServiceTest
                 }
             };
 
+            double expected = 103.5;
+
             _mockShippingCalculator.Setup(x => x.CalculateShippingCost(It.IsAny<Cart>())).Returns(15);
 
             var result = _checkOutEngine.CalculateTotals(cart);
 
-            Assert.Equal(103.5, result.Total);
+
+            Assert.Equal(result.Total, expected);
 
         }
     }
