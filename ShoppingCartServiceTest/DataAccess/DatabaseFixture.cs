@@ -1,5 +1,10 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using ShoppingCartService.Controllers.Models;
+using ShoppingCartService.DataAccess.Entities;
+using ShoppingCartService.Models;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -14,6 +19,7 @@ namespace ShoppingCartServiceTest.DataAccess
             if (DockerStart())
             {
                 WaitForMongoDbConnection("mongodb://127.0.0.1:1111", "ShoppingCartDb");
+                FillDatabase();
             }
         }
 
@@ -81,6 +87,66 @@ namespace ShoppingCartServiceTest.DataAccess
             probeTask.Wait();
 
             return probeTask.Result;
+        }
+
+
+        public void FillDatabase()
+        {
+            var client = new MongoClient("mongodb://127.0.0.1:1111");
+            var database = client.GetDatabase("ShoppingCartDb");
+            var carts = database.GetCollection<Cart>("ShoppingCart");
+
+            var cartList = new List<Cart>
+            {
+                new Cart()
+                {
+                    Id = ObjectId.GenerateNewId().ToString(),
+                    CustomerId = Guid.NewGuid().ToString(),
+                    CustomerType = CustomerType.Standard,
+                    ShippingMethod = ShippingMethod.Standard,
+                    ShippingAddress = new Address()
+                    {
+                        Country = "Bolivia",
+                        City = "La Paz",
+                        Street = "Calle 1"
+                    },
+                    Items = new List<Item>()
+                    {
+                        new Item()
+                        {
+                            ProductId = Guid.NewGuid().ToString(),
+                            ProductName = "Test2",
+                            Price = 10,
+                            Quantity = 1,
+                        }
+                    }
+                },
+                 new Cart()
+                {
+                    Id = ObjectId.GenerateNewId().ToString(),
+                    CustomerId = Guid.NewGuid().ToString(),
+                    CustomerType = CustomerType.Standard,
+                    ShippingMethod = ShippingMethod.Standard,
+                    ShippingAddress = new Address()
+                    {
+                        Country = "Bolivia",
+                        City = "La Paz",
+                        Street = "Calle 1"
+                    },
+                    Items = new List<Item>()
+                    {
+                        new Item()
+                        {
+                            ProductId = Guid.NewGuid().ToString(),
+                            ProductName = "Test3",
+                            Price = 10,
+                            Quantity = 1,
+                        }
+                    }
+                }
+            };
+
+            carts.InsertMany(cartList);
         }
 
         public void Dispose()
